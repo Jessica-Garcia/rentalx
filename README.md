@@ -1,2 +1,2 @@
 # rentalx
-API desenvolvida no decorrer das aulas do capítulo 2 do programa Ignite.
+API desenvolvida no decorrer das aulas do programa Ignite da Rocketseat.
