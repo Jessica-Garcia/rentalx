@@ -6,6 +6,7 @@ import { UsersRepository } from '../modules/accounts/repositories/implementation
 interface IPayload {
   sub: string;
 }
+// eslint-disable-next-line import/prefer-default-export
 export const ensureAuthenticated = (
   request: Request,
   response: Response,
@@ -19,6 +20,7 @@ export const ensureAuthenticated = (
   const [, token] = authHeader.split(' ');
 
   try {
+    // eslint-disable-next-line camelcase
     const { sub: user_id } = verify(
       token,
       '6308f5d1173ef58933683ea7d004e5ab',
@@ -31,6 +33,10 @@ export const ensureAuthenticated = (
     if (!user) {
       throw new AppError('User does not exists', 401);
     }
+
+    request.user = {
+      id: user_id,
+    };
 
     next();
   } catch (error) {
